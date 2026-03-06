@@ -52,7 +52,7 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => (
               </p>
 
               <a
-                href={`https://wa.me/?text=${encodeURIComponent(`Hi! I'm interested in the ${product.name} from Zivora.`)}`}
+                href={`https://wa.me/919061780845?text=${encodeURIComponent(`Hi! I'm interested in the ${product.name} from Zivora.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-[#25D366] text-white font-body text-sm tracking-[0.2em] uppercase py-4 flex items-center justify-center gap-3 hover:bg-[#128C7E] transition-colors duration-300"
