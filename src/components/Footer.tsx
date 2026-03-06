@@ -26,9 +26,10 @@ const Footer = () => (
               <Link
                 key={link.to}
                 to={link.to}
-                className="block font-body text-sm text-primary-foreground/60 hover:text-gold transition-colors"
+                className="group flex items-center gap-2 font-body text-sm text-primary-foreground/60 hover:text-gold transition-colors w-max"
               >
-                {link.label}
+                <span className="h-[1px] w-0 bg-gold transition-all duration-300 group-hover:w-3" />
+                <span className="transform transition-transform duration-300 group-hover:translate-x-1">{link.label}</span>
               </Link>
             ))}
           </div>
@@ -38,9 +39,9 @@ const Footer = () => (
         <div>
           <h4 className="font-display text-sm tracking-[0.15em] uppercase mb-6">Customer Care</h4>
           <div className="space-y-3 font-body text-sm text-primary-foreground/60">
-            <p>Shipping & Returns</p>
-            <p>Size Guide</p>
-            <p>Jewelry Care</p>
+            <p className="cursor-pointer hover:text-gold transition-colors duration-300 transform hover:translate-x-2">Shipping & Returns</p>
+            <p className="cursor-pointer hover:text-gold transition-colors duration-300 transform hover:translate-x-2">Size Guide</p>
+            <p className="cursor-pointer hover:text-gold transition-colors duration-300 transform hover:translate-x-2">Jewelry Care</p>
           </div>
         </div>
 
@@ -53,10 +54,10 @@ const Footer = () => (
               <a
                 key={i}
                 href="#"
-                className="text-primary-foreground/60 hover:text-gold transition-colors"
+                className="text-primary-foreground/60 hover:text-gold transition-all duration-500 transform hover:-translate-y-2 hover:scale-110"
                 aria-label="Social link"
               >
-                <Icon size={20} />
+                <Icon size={20} className="drop-shadow-sm" />
               </a>
             ))}
           </div>

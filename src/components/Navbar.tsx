@@ -40,8 +40,8 @@ const Navbar = () => {
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${scrolled
-            ? "bg-background/95 backdrop-blur-md border-b border-border py-0 shadow-sm"
-            : "bg-transparent border-b-transparent py-2"
+          ? "bg-background/95 backdrop-blur-md border-b border-border py-0 shadow-sm"
+          : "bg-transparent border-b-transparent py-2"
           }`}
       >
         <div className="container mx-auto px-6 lg:px-12">
@@ -53,16 +53,24 @@ const Navbar = () => {
 
             {/* Desktop nav links */}
             <div className="hidden lg:flex items-center gap-10">
-              {links.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className={`font-body text-sm tracking-[0.2em] uppercase transition-colors duration-300 ${location.pathname === link.to ? "text-gold" : "text-foreground hover:text-gold"
-                    }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {links.map((link) => {
+                const isActive = location.pathname === link.to;
+                return (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="relative group font-body text-sm tracking-[0.2em] uppercase transition-colors duration-300 py-2"
+                  >
+                    <span className={isActive ? "text-gold" : "text-foreground group-hover:text-gold transition-colors duration-300"}>
+                      {link.label}
+                    </span>
+                    <span
+                      className={`absolute bottom-0 left-0 w-full h-[1px] bg-gold transform origin-left transition-transform duration-300 ease-out ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                        }`}
+                    />
+                  </Link>
+                );
+              })}
             </div>
 
             {/* Right actions */}

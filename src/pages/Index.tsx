@@ -102,11 +102,20 @@ const Index = () => {
               { icon: Clock, title: "Timeless Design", desc: "Minimalist silhouettes that transcend trends and seasons." },
             ].map((item, i) => (
               <FadeIn key={i} delay={i * 0.15}>
-                <div className="flex flex-col items-center">
-                  <item.icon className="text-gold mb-4" size={32} strokeWidth={1.2} />
-                  <h3 className="font-display text-xl mb-3">{item.title}</h3>
+                <motion.div
+                  className="flex flex-col items-center group cursor-default"
+                  whileHover={{ y: -8 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                  >
+                    <item.icon className="text-gold mb-4 drop-shadow-sm group-hover:drop-shadow-md transition-all" size={32} strokeWidth={1.2} />
+                  </motion.div>
+                  <h3 className="font-display text-xl mb-3 group-hover:text-gold transition-colors">{item.title}</h3>
                   <p className="font-body text-sm text-warm-gray leading-relaxed">{item.desc}</p>
-                </div>
+                </motion.div>
               </FadeIn>
             ))}
           </div>
@@ -154,7 +163,7 @@ const Index = () => {
             </p>
             <Link
               to="/about"
-              className="inline-block border border-gold text-gold font-body text-sm tracking-[0.2em] uppercase px-8 py-3 hover:bg-gold hover:text-primary-foreground transition-colors duration-300"
+              className="inline-block border border-gold text-gold font-body text-sm tracking-[0.2em] uppercase px-8 py-3 hover:bg-gold hover:text-primary-foreground hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
             >
               Read More
             </Link>
