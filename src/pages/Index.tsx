@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Gem, Sparkles, Clock } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import FadeIn from "@/components/FadeIn";
 import ProductCard from "@/components/ProductCard";
 import ProductModal from "@/components/ProductModal";
@@ -16,6 +17,10 @@ const Index = () => {
   const featured = products.filter((p) => p.isFeatured);
   const bestSellers = products.filter((p) => p.isBestSeller);
 
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 1000], [0, 200]);
+  const y2 = useTransform(scrollY, [0, 1000], [0, -100]);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -24,32 +29,37 @@ const Index = () => {
       <section className="relative min-h-[100dvh] flex items-center pt-20 overflow-hidden">
         <div className="container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-12 items-center">
           <FadeIn>
-            <p className="font-body text-xs tracking-[0.3em] uppercase text-gold mb-6">
-              New Collection 2026
-            </p>
-            <h1 className="font-display text-5xl md:text-7xl text-foreground leading-[1.1] mb-6">
-              Everyday Jewelry.
-              <br />
-              <span className="text-gold italic">Elevated.</span>
-            </h1>
-            <p className="font-body text-base text-warm-gray max-w-md mb-10 leading-relaxed">
-              Minimal, timeless pieces designed for modern women. Crafted with intention, worn with confidence.
-            </p>
-            <Link
-              to="/collections"
-              className="inline-block bg-gold text-primary-foreground font-body text-sm tracking-[0.2em] uppercase px-10 py-4 hover:bg-gold-dark transition-colors duration-300"
-            >
-              Explore Collection
-            </Link>
+            <motion.div style={{ y: y1 }}>
+              <p className="font-body text-xs tracking-[0.3em] uppercase text-gold mb-6">
+                New Collection 2026
+              </p>
+              <h1 className="font-display text-5xl md:text-7xl text-foreground leading-[1.1] mb-6">
+                Everyday Jewelry.
+                <br />
+                <span className="text-gold italic">Elevated.</span>
+              </h1>
+              <p className="font-body text-base text-warm-gray max-w-md mb-10 leading-relaxed">
+                Minimal, timeless pieces designed for modern women. Crafted with intention, worn with confidence.
+              </p>
+              <Link
+                to="/collections"
+                className="inline-block bg-gold text-primary-foreground font-body text-sm tracking-[0.2em] uppercase px-10 py-4 hover:bg-gold-dark transition-colors duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1 transform"
+              >
+                Explore Collection
+              </Link>
+            </motion.div>
           </FadeIn>
           <FadeIn delay={0.2}>
-            <div className="relative">
-              <img
+            <motion.div style={{ y: y2 }} className="relative overflow-hidden group rounded-sm shadow-lg">
+              <motion.img
                 src={heroImage}
                 alt="Zivora jewelry collection"
                 className="w-full object-cover aspect-[4/3] lg:aspect-[3/4] max-h-[60vh] lg:max-h-[75vh]"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
               />
-            </div>
+              <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            </motion.div>
           </FadeIn>
         </div>
       </section>

@@ -30,13 +30,13 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => (
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full aspect-square object-cover"
+                className="w-full h-64 md:h-auto md:aspect-square object-cover"
               />
             </div>
-            <div className="p-8 md:p-12 flex flex-col justify-center">
+            <div className="p-6 md:p-12 flex flex-col justify-center relative">
               <button
                 onClick={onClose}
-                className="self-end mb-6 text-warm-gray hover:text-foreground transition-colors"
+                className="absolute top-4 right-4 md:static md:self-end md:mb-6 text-warm-gray hover:text-foreground transition-colors bg-background/50 md:bg-transparent rounded-full p-2 md:p-0"
                 aria-label="Close"
               >
                 <X size={24} />
@@ -47,15 +47,12 @@ const ProductModal = ({ product, onClose }: ProductModalProps) => (
               </p>
               <h2 className="font-display text-3xl text-foreground mb-2">{product.name}</h2>
               <p className="font-accent text-2xl text-gold mb-6">₹{product.price.toLocaleString("en-IN")}</p>
-              <p className="font-body text-sm text-warm-gray leading-relaxed mb-6">
+              <p className="font-body text-sm text-warm-gray leading-relaxed mb-8">
                 {product.description}
-              </p>
-              <p className="font-body text-xs tracking-[0.15em] uppercase text-muted-foreground mb-8">
-                Material: {product.material}
               </p>
 
               <a
-                href={`https://wa.me/?text=${encodeURIComponent(`Hi! I'm interested in the ${product.name} (${product.material}) from Zivora.`)}`}
+                href={`https://wa.me/?text=${encodeURIComponent(`Hi! I'm interested in the ${product.name} from Zivora.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-[#25D366] text-white font-body text-sm tracking-[0.2em] uppercase py-4 flex items-center justify-center gap-3 hover:bg-[#128C7E] transition-colors duration-300"

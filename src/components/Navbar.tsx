@@ -6,7 +6,16 @@ import logo from "@/assets/zivora-logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const links = [
     { to: "/", label: "Home" },
@@ -29,7 +38,12 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border">
+      <nav
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${scrolled
+            ? "bg-background/95 backdrop-blur-md border-b border-border py-0 shadow-sm"
+            : "bg-transparent border-b-transparent py-2"
+          }`}
+      >
         <div className="container mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
@@ -118,7 +132,7 @@ const Navbar = () => {
                 ))}
               </div>
 
-            
+
             </motion.div>
           </>
         )}
