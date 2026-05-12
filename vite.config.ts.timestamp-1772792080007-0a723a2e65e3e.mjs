@@ -7,7 +7,7 @@ var __vite_injected_original_dirname = "C:\\Users\\DELL\\Desktop\\jwellary\\zivo
 var vite_config_default = defineConfig(({ mode }) => ({
   server: {
     host: "::",
-    port: 8080,
+    port: 3000,
     hmr: {
       overlay: false
     }
